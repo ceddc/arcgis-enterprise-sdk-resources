@@ -266,9 +266,14 @@ namespace NetLayerAccessSOI
             }
             catch (RestErrorException restException)
             {
+                // if I just return the standard message, it shows the json message when accessing MapServer/1?f=json but otherwise in rest/html it show the layer page with the layer title and no infos but still the layer title.
+                // only case where it's raised is when there is no layer access possible
+                // This throw an exception triggering a 500 error showing a blank html page instead.
+                throw new ResourceOrOperationNotFoundException(restException.Message);
                 // pre- or post- filters can throw restException with the error JSON output in the Message property.
                 // we catch them here and return JSON response.
                 responseProperties = "{\"Content-Type\":\"text/plain;charset=utf-8\"}";
+ 
                 //catch and return a JSON error from the pre- or postFilter.
                 return System.Text.Encoding.UTF8.GetBytes(restException.Message);
             }
