@@ -69,6 +69,7 @@ builds
 *.svclog
 *.scc
 *.vsidx
+*.v2
 # Chutzpah Test files
 _Chutzpah*
 # Visual C++ cache files
