@@ -62,8 +62,9 @@ namespace NetLayerAccessSOI
          */
         private String _permissionFilePath = "C:\\arcgisserver\\permission.json"; //default path
 
-        private String _wsdlFilePath = "C:\\Program Files\\ArcGIS\\Server\\framework\\runtime\\ArcGIS\\Resources\\XmlSchema\\MapServer.wsdl"; //default path
-
+        //TODO : update based on your setup
+        //private String _wsdlFilePath = "C:\\Program Files\\ArcGIS\\Server\\framework\\runtime\\ArcGIS\\Resources\\XmlSchema\\MapServer.wsdl"; //default path
+        private String _wsdlFilePath = "C:\\ArcGIS\\Server\\framework\\runtime\\ArcGIS\\Resources\\XmlSchema\\MapServer.wsdl";
 
         HashSet<string> _authorizedLayerSet;
 
