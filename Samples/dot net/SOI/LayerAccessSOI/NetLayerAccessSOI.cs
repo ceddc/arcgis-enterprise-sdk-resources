@@ -38,7 +38,7 @@ namespace NetLayerAccessSOI
     [ClassInterface(ClassInterfaceType.None)]
     [ServerObjectInterceptor("MapServer",
         Description = "SOI to control access to different layers of a service.",
-        DisplayName = "DotNet Layer Access SOI Example",
+        DisplayName = "Fix SOI Layer Access",
         Properties = "",
         SupportsSharedInstances = true)]
     public class NetLayerAccessSOI : IServerObjectExtension, IRESTRequestHandler, IWebRequestHandler, IRequestHandler2, IRequestHandler
