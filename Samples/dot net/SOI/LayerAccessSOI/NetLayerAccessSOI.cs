@@ -127,6 +127,12 @@ namespace NetLayerAccessSOI
                                                 PreFilter = PreFilterLayerQuery,
                                                 PostFilter = null
                                             } },
+                // apply the same filter now that RestHandlerOpCode.LayerRoot exist in the SDK and is called when /mapserver/1 that somehow log as a /layers/1 call
+                { RestHandlerOpCode.LayerRoot, new RestFilter
+                                            {
+                                                PreFilter = PreFilterLayerQuery,
+                                                PostFilter = null
+                                            } },
                                             /*
                                              * TODO explain unused custom code here
                                              */
@@ -504,7 +510,13 @@ namespace NetLayerAccessSOI
             newResponseProperties = responseProperties;
 
             if (null == _authorizedLayerSet)
-                return null; //Just returning null for brevity. In real production code, return error JSON and set proper responseProperties.
+            {
+                //original return null; //Just returning null for brevity. In real production code, return error JSON and set proper responseProperties.
+                // if done, it seem some "internal requests" made while accessing /mapserver/x are not returning any authorized layer, and the null response is breaking the functionality.
+                // so in that case it's fine to return the normal response and depending on other filters for filtering access rights it seem RestHandlerOpCode.LayerRoot was never implemented in the sample while it's the correct handler
+                return responseBytes;
+            }
+
 
             //restInput is not used here, but may be used later as needed
 
