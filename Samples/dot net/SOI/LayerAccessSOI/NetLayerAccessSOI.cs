@@ -247,7 +247,8 @@ namespace NetLayerAccessSOI
                         return response;
 
                     string newResponseProperties;
-                    var newResponse = restFilterOp.PostFilter(restInput, response, responseProperties, out newResponseProperties);
+                    // from https://community.esri.com/t5/developers-questions/serverutilities-getgroupinfo-serverutilities/td-p/1577066
+                    var newResponse = restFilterOp.PostFilter(restInput, response, responseProperties, out newResponseProperties) ?? response;
                     responseProperties = newResponseProperties;
 
                     return newResponse;
